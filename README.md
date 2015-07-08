@@ -13,5 +13,5 @@ composer install
 
 ##Lancer le projet 
 
-php app/console server:run
+<code>php app/console server:run</code>
 
