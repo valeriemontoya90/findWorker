@@ -1,0 +1,47 @@
+.contact{
+  padding: 50px 0;
+
+  .form-control, .btn{
+    color: #7e7c7b;
+    border: 1px solid rgba(0, 0, 0, 0.5);
+    @include border-radius(0);
+  }
+
+  input{
+    .form-control {
+      height: 45px;
+    }
+  }
+
+  textarea{
+    resize: none;
+  }
+
+  .btn{
+    margin-left: auto;
+    display: block;
+    padding: 25px 30px;
+    color: #000;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-family: 'Pier sans';
+
+    &:hover{
+      background: none;
+    }
+  }
+
+  .contact-form-infos{
+    line-height: 60px;
+    color: #7e7c7b;
+  }
+}
+
+@media (max-width: 767px){
+  .contact{
+    .btn{
+      margin: auto;
+    }
+  }
+}
