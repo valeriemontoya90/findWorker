@@ -129,6 +129,64 @@ class TestHandler extends AbstractProcessingHandler
         return false;
     }
 
+<<<<<<< HEAD
+=======
+    public function hasEmergencyThatContains($message)
+    {
+        return $this->hasRecordThatContains($message, Logger::EMERGENCY);
+    }
+
+    public function hasAlertThatContains($message)
+    {
+        return $this->hasRecordThatContains($message, Logger::ALERT);
+    }
+
+    public function hasCriticalThatContains($message)
+    {
+        return $this->hasRecordThatContains($message, Logger::CRITICAL);
+    }
+
+    public function hasErrorThatContains($message)
+    {
+        return $this->hasRecordThatContains($message, Logger::ERROR);
+    }
+
+    public function hasWarningThatContains($message)
+    {
+        return $this->hasRecordThatContains($message, Logger::WARNING);
+    }
+
+    public function hasNoticeThatContains($message)
+    {
+        return $this->hasRecordThatContains($message, Logger::NOTICE);
+    }
+
+    public function hasInfoThatContains($message)
+    {
+        return $this->hasRecordThatContains($message, Logger::INFO);
+    }
+
+    public function hasDebugThatContains($message)
+    {
+        return $this->hasRecordThatContains($message, Logger::DEBUG);
+    }
+
+    public function hasRecordThatContains($message, $level)
+    {
+        if (!isset($this->recordsByLevel[$level])) {
+            return false;
+        }
+
+        foreach ($this->recordsByLevel[$level] as $rec) {
+            if (strpos($rec['message'], $message) !== false) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+>>>>>>> e2daa7b143a354d747858dfbc2c58f6849c2f1d0
     /**
      * {@inheritdoc}
      */

@@ -38,7 +38,11 @@ use InvalidArgumentException;
 class Registry
 {
     /**
+<<<<<<< HEAD
      * List of all loggers in the registry (ba named indexes)
+=======
+     * List of all loggers in the registry (by named indexes)
+>>>>>>> e2daa7b143a354d747858dfbc2c58f6849c2f1d0
      *
      * @var Logger[]
      */

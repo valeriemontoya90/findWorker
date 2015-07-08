@@ -12,6 +12,10 @@
 namespace Monolog\Handler;
 
 use Monolog\Logger;
+<<<<<<< HEAD
+=======
+use Monolog\Formatter\NormalizerFormatter;
+>>>>>>> e2daa7b143a354d747858dfbc2c58f6849c2f1d0
 
 /**
  * Class to record a log on a NewRelic application.
@@ -80,16 +84,25 @@ class NewRelicHandler extends AbstractProcessingHandler
 
         if ($transactionName = $this->getTransactionName($record['context'])) {
             $this->setNewRelicTransactionName($transactionName);
+<<<<<<< HEAD
             unset($record['context']['transaction_name']);
+=======
+            unset($record['formatted']['context']['transaction_name']);
+>>>>>>> e2daa7b143a354d747858dfbc2c58f6849c2f1d0
         }
 
         if (isset($record['context']['exception']) && $record['context']['exception'] instanceof \Exception) {
             newrelic_notice_error($record['message'], $record['context']['exception']);
+<<<<<<< HEAD
             unset($record['context']['exception']);
+=======
+            unset($record['formatted']['context']['exception']);
+>>>>>>> e2daa7b143a354d747858dfbc2c58f6849c2f1d0
         } else {
             newrelic_notice_error($record['message']);
         }
 
+<<<<<<< HEAD
         foreach ($record['context'] as $key => $parameter) {
             if (is_array($parameter) && $this->explodeArrays) {
                 foreach ($parameter as $paramKey => $paramValue) {
@@ -107,6 +120,25 @@ class NewRelicHandler extends AbstractProcessingHandler
                 }
             } else {
                 newrelic_add_custom_parameter('extra_' . $key, $parameter);
+=======
+        foreach ($record['formatted']['context'] as $key => $parameter) {
+            if (is_array($parameter) && $this->explodeArrays) {
+                foreach ($parameter as $paramKey => $paramValue) {
+                    $this->setNewRelicParameter('context_' . $key . '_' . $paramKey, $paramValue);
+                }
+            } else {
+                $this->setNewRelicParameter('context_' . $key, $parameter);
+            }
+        }
+
+        foreach ($record['formatted']['extra'] as $key => $parameter) {
+            if (is_array($parameter) && $this->explodeArrays) {
+                foreach ($parameter as $paramKey => $paramValue) {
+                    $this->setNewRelicParameter('extra_' . $key . '_' . $paramKey, $paramValue);
+                }
+            } else {
+                $this->setNewRelicParameter('extra_' . $key, $parameter);
+>>>>>>> e2daa7b143a354d747858dfbc2c58f6849c2f1d0
             }
         }
     }
@@ -167,10 +199,38 @@ class NewRelicHandler extends AbstractProcessingHandler
     /**
      * Overwrites the name of the current transaction
      *
+<<<<<<< HEAD
      * @param $transactionName
+=======
+     * @param string $transactionName
+>>>>>>> e2daa7b143a354d747858dfbc2c58f6849c2f1d0
      */
     protected function setNewRelicTransactionName($transactionName)
     {
         newrelic_name_transaction($transactionName);
     }
+<<<<<<< HEAD
+=======
+
+    /**
+     * @param string $key
+     * @param mixed  $value
+     */
+    protected function setNewRelicParameter($key, $value)
+    {
+        if (null === $value || is_scalar($value)) {
+            newrelic_add_custom_parameter($key, $value);
+        } else {
+            newrelic_add_custom_parameter($key, @json_encode($value));
+        }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    protected function getDefaultFormatter()
+    {
+        return new NormalizerFormatter();
+    }
+>>>>>>> e2daa7b143a354d747858dfbc2c58f6849c2f1d0
 }

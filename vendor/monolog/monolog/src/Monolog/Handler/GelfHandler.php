@@ -13,6 +13,10 @@ namespace Monolog\Handler;
 
 use Gelf\IMessagePublisher;
 use Gelf\PublisherInterface;
+<<<<<<< HEAD
+=======
+use Gelf\Publisher;
+>>>>>>> e2daa7b143a354d747858dfbc2c58f6849c2f1d0
 use InvalidArgumentException;
 use Monolog\Logger;
 use Monolog\Formatter\GelfMessageFormatter;
@@ -31,16 +35,27 @@ class GelfHandler extends AbstractProcessingHandler
     protected $publisher;
 
     /**
+<<<<<<< HEAD
      * @param PublisherInterface|IMessagePublisher $publisher a publisher object
      * @param integer                              $level     The minimum logging level at which this handler will be triggered
      * @param boolean                              $bubble    Whether the messages that are handled can bubble up the stack or not
+=======
+     * @param PublisherInterface|IMessagePublisher|Publisher $publisher a publisher object
+     * @param integer                                        $level     The minimum logging level at which this handler will be triggered
+     * @param boolean                                        $bubble    Whether the messages that are handled can bubble up the stack or not
+>>>>>>> e2daa7b143a354d747858dfbc2c58f6849c2f1d0
      */
     public function __construct($publisher, $level = Logger::DEBUG, $bubble = true)
     {
         parent::__construct($level, $bubble);
 
+<<<<<<< HEAD
         if (!$publisher instanceof IMessagePublisher && !$publisher instanceof PublisherInterface) {
             throw new InvalidArgumentException("Invalid publisher, expected a Gelf\IMessagePublisher or Gelf\PublisherInterface instance");
+=======
+        if (!$publisher instanceof Publisher && !$publisher instanceof IMessagePublisher && !$publisher instanceof PublisherInterface) {
+            throw new InvalidArgumentException("Invalid publisher, expected a Gelf\Publisher, Gelf\IMessagePublisher or Gelf\PublisherInterface instance");
+>>>>>>> e2daa7b143a354d747858dfbc2c58f6849c2f1d0
         }
 
         $this->publisher = $publisher;

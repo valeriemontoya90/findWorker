@@ -71,7 +71,11 @@ class BrowserConsoleHandler extends AbstractProcessingHandler
         }
 
         if (count(self::$records)) {
+<<<<<<< HEAD
             echo '<script>' . self::generateScript() . '</script>';
+=======
+            echo '<script>' , self::generateScript() , '</script>';
+>>>>>>> e2daa7b143a354d747858dfbc2c58f6849c2f1d0
             self::reset();
         }
     }

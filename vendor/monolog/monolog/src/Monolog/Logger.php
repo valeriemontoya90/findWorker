@@ -152,10 +152,18 @@ class Logger implements LoggerInterface
      * Pushes a handler on to the stack.
      *
      * @param HandlerInterface $handler
+<<<<<<< HEAD
+=======
+     * @return $this
+>>>>>>> e2daa7b143a354d747858dfbc2c58f6849c2f1d0
      */
     public function pushHandler(HandlerInterface $handler)
     {
         array_unshift($this->handlers, $handler);
+<<<<<<< HEAD
+=======
+        return $this;
+>>>>>>> e2daa7b143a354d747858dfbc2c58f6849c2f1d0
     }
 
     /**
@@ -184,6 +192,10 @@ class Logger implements LoggerInterface
      * Adds a processor on to the stack.
      *
      * @param callable $callback
+<<<<<<< HEAD
+=======
+     * @return $this
+>>>>>>> e2daa7b143a354d747858dfbc2c58f6849c2f1d0
      */
     public function pushProcessor($callback)
     {
@@ -191,6 +203,10 @@ class Logger implements LoggerInterface
             throw new \InvalidArgumentException('Processors must be valid callables (callback or object with an __invoke method), '.var_export($callback, true).' given');
         }
         array_unshift($this->processors, $callback);
+<<<<<<< HEAD
+=======
+        return $this;
+>>>>>>> e2daa7b143a354d747858dfbc2c58f6849c2f1d0
     }
 
     /**
@@ -438,9 +454,13 @@ class Logger implements LoggerInterface
      */
     public function log($level, $message, array $context = array())
     {
+<<<<<<< HEAD
         if (is_string($level) && defined(__CLASS__.'::'.strtoupper($level))) {
             $level = constant(__CLASS__.'::'.strtoupper($level));
         }
+=======
+        $level = static::toMonologLevel($level);
+>>>>>>> e2daa7b143a354d747858dfbc2c58f6849c2f1d0
 
         return $this->addRecord($level, $message, $context);
     }
@@ -612,4 +632,19 @@ class Logger implements LoggerInterface
     {
         return $this->addRecord(static::EMERGENCY, $message, $context);
     }
+<<<<<<< HEAD
+=======
+
+    /**
+     * Set the timezone to be used for the timestamp of log records.
+     *
+     * This is stored globally for all Logger instances
+     *
+     * @param \DateTimeZone $tz Timezone object
+     */
+    public static function setTimezone(\DateTimeZone $tz)
+    {
+        self::$timezone = $tz;
+    }
+>>>>>>> e2daa7b143a354d747858dfbc2c58f6849c2f1d0
 }

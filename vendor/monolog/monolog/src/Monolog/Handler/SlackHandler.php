@@ -121,18 +121,43 @@ class SlackHandler extends SocketHandler
      */
     private function buildContent($record)
     {
+<<<<<<< HEAD
         $dataArray = array(
             'token' => $this->token,
             'channel' => $this->channel,
             'username' => $this->username,
             'text' => '',
+=======
+        $dataArray = $this->prepareContentData($record);
+
+        return http_build_query($dataArray);
+    }
+
+    /**
+     * Prepares content data
+     *
+     * @param  array $record
+     * @return array
+     */
+    protected function prepareContentData($record)
+    {
+        $dataArray = array(
+            'token'       => $this->token,
+            'channel'     => $this->channel,
+            'username'    => $this->username,
+            'text'        => '',
+>>>>>>> e2daa7b143a354d747858dfbc2c58f6849c2f1d0
             'attachments' => array()
         );
 
         if ($this->useAttachment) {
             $attachment = array(
                 'fallback' => $record['message'],
+<<<<<<< HEAD
                 'color' => $this->getAttachmentColor($record['level'])
+=======
+                'color'    => $this->getAttachmentColor($record['level'])
+>>>>>>> e2daa7b143a354d747858dfbc2c58f6849c2f1d0
             );
 
             if ($this->useShortAttachment) {
@@ -173,7 +198,11 @@ class SlackHandler extends SocketHandler
                                 'title' => $var,
                                 'value' => $val,
                                 'short' => $this->useShortAttachment
+<<<<<<< HEAD
                            );
+=======
+                            );
+>>>>>>> e2daa7b143a354d747858dfbc2c58f6849c2f1d0
                         }
                     }
                 }
@@ -192,7 +221,11 @@ class SlackHandler extends SocketHandler
                                 'title' => $var,
                                 'value' => $val,
                                 'short' => $this->useShortAttachment
+<<<<<<< HEAD
                            );
+=======
+                            );
+>>>>>>> e2daa7b143a354d747858dfbc2c58f6849c2f1d0
                         }
                     }
                 }
@@ -206,8 +239,12 @@ class SlackHandler extends SocketHandler
         if ($this->iconEmoji) {
             $dataArray['icon_emoji'] = ":{$this->iconEmoji}:";
         }
+<<<<<<< HEAD
 
         return http_build_query($dataArray);
+=======
+        return $dataArray;
+>>>>>>> e2daa7b143a354d747858dfbc2c58f6849c2f1d0
     }
 
     /**

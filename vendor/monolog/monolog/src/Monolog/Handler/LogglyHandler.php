@@ -19,6 +19,10 @@ use Monolog\Formatter\LogglyFormatter;
  *
  * @author Przemek Sobstel <przemek@sobstel.org>
  * @author Adam Pancutt <adam@pancutt.com>
+<<<<<<< HEAD
+=======
+ * @author Gregory Barchard <gregory@barchard.net>
+>>>>>>> e2daa7b143a354d747858dfbc2c58f6849c2f1d0
  */
 class LogglyHandler extends AbstractProcessingHandler
 {
@@ -28,7 +32,11 @@ class LogglyHandler extends AbstractProcessingHandler
 
     protected $token;
 
+<<<<<<< HEAD
     protected $tag;
+=======
+    protected $tag = array();
+>>>>>>> e2daa7b143a354d747858dfbc2c58f6849c2f1d0
 
     public function __construct($token, $level = Logger::DEBUG, $bubble = true)
     {
@@ -43,12 +51,24 @@ class LogglyHandler extends AbstractProcessingHandler
 
     public function setTag($tag)
     {
+<<<<<<< HEAD
         $this->tag = $tag;
+=======
+        $tag = !empty($tag) ? $tag : array();
+        $this->tag = is_array($tag) ? $tag : array($tag);
+>>>>>>> e2daa7b143a354d747858dfbc2c58f6849c2f1d0
     }
 
     public function addTag($tag)
     {
+<<<<<<< HEAD
         $this->tag = (strlen($this->tag) > 0) ? $this->tag .','. $tag : $tag;
+=======
+        if (!empty($tag)) {
+            $tag = is_array($tag) ? $tag : array($tag);
+            $this->tag = array_unique(array_merge($this->tag, $tag));
+        }
+>>>>>>> e2daa7b143a354d747858dfbc2c58f6849c2f1d0
     }
 
     protected function write(array $record)
@@ -75,8 +95,13 @@ class LogglyHandler extends AbstractProcessingHandler
 
         $headers = array('Content-Type: application/json');
 
+<<<<<<< HEAD
         if ($this->tag) {
             $headers[] = "X-LOGGLY-TAG: {$this->tag}";
+=======
+        if (!empty($this->tag)) {
+            $headers[] = 'X-LOGGLY-TAG: '.implode(',', $this->tag);
+>>>>>>> e2daa7b143a354d747858dfbc2c58f6849c2f1d0
         }
 
         $ch = curl_init();
@@ -87,7 +112,14 @@ class LogglyHandler extends AbstractProcessingHandler
         curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 
+<<<<<<< HEAD
         curl_exec($ch);
+=======
+        if (curl_exec($ch) === false) {
+            throw new \RuntimeException(sprintf('Curl error (code %s): %s', curl_errno($ch), curl_error($ch)));
+        }
+
+>>>>>>> e2daa7b143a354d747858dfbc2c58f6849c2f1d0
         curl_close($ch);
     }
 

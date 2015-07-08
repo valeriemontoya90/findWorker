@@ -162,6 +162,7 @@ class AnnotationReader implements Reader
             throw AnnotationException::optimizerPlusSaveComments();
         }
 
+<<<<<<< HEAD
 
         if (extension_loaded('Zend Optimizer+') && (ini_get('zend_optimizerplus.load_comments') === "0" || ini_get('opcache.load_comments') === "0")) {
             throw AnnotationException::optimizerPlusLoadComments();
@@ -169,6 +170,16 @@ class AnnotationReader implements Reader
 
         if (extension_loaded('Zend OPcache') && ini_get('opcache.load_comments') == 0) {
             throw AnnotationException::optimizerPlusLoadComments();
+=======
+        if (PHP_VERSION_ID < 70000) {
+            if (extension_loaded('Zend Optimizer+') && (ini_get('zend_optimizerplus.load_comments') === "0" || ini_get('opcache.load_comments') === "0")) {
+                throw AnnotationException::optimizerPlusLoadComments();
+            }
+
+            if (extension_loaded('Zend OPcache') && ini_get('opcache.load_comments') == 0) {
+                throw AnnotationException::optimizerPlusLoadComments();
+            }
+>>>>>>> e2daa7b143a354d747858dfbc2c58f6849c2f1d0
         }
 
         AnnotationRegistry::registerFile(__DIR__ . '/Annotation/IgnoreAnnotation.php');

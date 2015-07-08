@@ -63,7 +63,13 @@ class MandrillHandler extends MailHandler
             'async' => false,
         )));
 
+<<<<<<< HEAD
         curl_exec($ch);
+=======
+        if (curl_exec($ch) === false) {
+            throw new \RuntimeException(sprintf('Curl error (code %s): %s', curl_errno($ch), curl_error($ch)));
+        }
+>>>>>>> e2daa7b143a354d747858dfbc2c58f6849c2f1d0
         curl_close($ch);
     }
 }

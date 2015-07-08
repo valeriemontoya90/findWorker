@@ -116,7 +116,15 @@ class CubeHandler extends AbstractProcessingHandler
         $data['data'] = $record['context'];
         $data['data']['level'] = $record['level'];
 
+<<<<<<< HEAD
         $this->{'write'.$this->scheme}(json_encode($data));
+=======
+        if ($this->scheme === 'http') {
+            $this->writeHttp(json_encode($data));
+        } else {
+            $this->writeUdp(json_encode($data));
+        }
+>>>>>>> e2daa7b143a354d747858dfbc2c58f6849c2f1d0
     }
 
     private function writeUdp($data)
@@ -140,6 +148,12 @@ class CubeHandler extends AbstractProcessingHandler
                 'Content-Length: ' . strlen('['.$data.']'))
         );
 
+<<<<<<< HEAD
         return curl_exec($this->httpConnection);
+=======
+        if (curl_exec($this->httpConnection) === false) {
+            throw new \RuntimeException(sprintf('Curl error (code %s): %s', curl_errno($ch), curl_error($ch)));
+        }
+>>>>>>> e2daa7b143a354d747858dfbc2c58f6849c2f1d0
     }
 }

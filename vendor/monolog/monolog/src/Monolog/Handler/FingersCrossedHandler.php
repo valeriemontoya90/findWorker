@@ -61,7 +61,14 @@ class FingersCrossedHandler extends AbstractHandler
         $this->bufferSize = $bufferSize;
         $this->bubble = $bubble;
         $this->stopBuffering = $stopBuffering;
+<<<<<<< HEAD
         $this->passthruLevel = $passthruLevel;
+=======
+
+        if ($passthruLevel !== null) {
+            $this->passthruLevel = Logger::toMonologLevel($passthruLevel);
+        }
+>>>>>>> e2daa7b143a354d747858dfbc2c58f6849c2f1d0
 
         if (!$this->handler instanceof HandlerInterface && !is_callable($this->handler)) {
             throw new \RuntimeException("The given handler (".json_encode($this->handler).") is not a callable nor a Monolog\Handler\HandlerInterface object");

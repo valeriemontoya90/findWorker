@@ -154,6 +154,10 @@ class LineFormatter extends NormalizerFormatter
             return $str;
         }
 
+<<<<<<< HEAD
         return strtr($str, array("\r\n" => ' ', "\r" => ' ', "\n" => ' '));
+=======
+        return str_replace(array("\r\n", "\r", "\n"), ' ', $str);
+>>>>>>> e2daa7b143a354d747858dfbc2c58f6849c2f1d0
     }
 }
