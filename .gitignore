@@ -1,8 +1,1 @@
-/app/cache/*
-!app/cache/.gitkeep
-/app/logs/*
-!app/logs/.gitkeep
-/app/phpunit.xml
-/bin/
-/composer.phar
-/web/bundles/
+
