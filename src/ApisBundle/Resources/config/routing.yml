@@ -1,0 +1,3 @@
+apis_homepage:
+    path:     /hello/{name}
+    defaults: { _controller: ApisBundle:Default:index }
