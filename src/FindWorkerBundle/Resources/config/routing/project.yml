@@ -1,0 +1,7 @@
+find_worker_new:
+    path:     /new
+    defaults: { _controller: FindWorkerBundle:Project:new }
+
+find_worker_list:
+    path:     /list
+    defaults: { _controller: FindWorkerBundle:Project:list }
